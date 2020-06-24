@@ -1,0 +1,166 @@
+\documentclass[11pt, a4paper, twocolumn]{article}
+\usepackage[left=1.5cm,text={18cm, 25cm},top={2.5cm}]{geometry}
+
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage{times}
+
+\usepackage{blindtext}
+\usepackage{hyperref}
+\usepackage{csquotes}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts, bm}
+\usepackage{mathtools}
+
+\usepackage{turnstile}
+
+
+\theoremstyle{definition}
+\newtheorem{definice}{Definice}
+
+\theoremstyle{remark}
+\newtheorem*{dukaz}{Důkaz}
+
+\theoremstyle{plain}
+\newtheorem{veta}{Věta}
+
+% 1.1 obraceny tecko
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%  TITULNI STRANKA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+
+\begin{center}
+	\Huge \textsc{Fakulta informačních technologií \\% mozna Huge, mozna medskip
+	Vysoké učení technické v~Brně}\\
+	\vspace{\stretch{0.382}}
+	\huge Typografie a publikování\,--\,2. projekt\\
+	\huge Sazba dokumentů a matematických výrazů
+	\vspace{\stretch{0.618}}
+\end{center}
+
+{\Large 2019 \hfill Kateřina Mušková}
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%  VLASTNI DOKUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Úvod}
+V~této úloze si vyzkoušíme sazbu titulní strany, matematic\-kých vzorců, prostředí a dalších textových struktur obvyklých pro technicky zaměřené texty (například rovnice (\ref{r1}) nebo Definice \ref{d1} na straně \pageref{d1}). Pro odkazovaní na vzorce
+a struktury zásadně používáme příkaz \verb|\label| a \verb|\ref| případně \verb|\pageref| pokud se chceme odkázat na stranu
+výskytu.
+
+Na titulní straně je využito sázení nadpisu podle optického středu s~vy\-uži\-tím zlatého řezu. Tento postup byl probírán na přednášce. Dále je použito odřádkování se
+zadanou relativní velikostí 0.4 em a 0.3 em.
+
+\section{Matematický oddíl}
+Nejprve se podíváme na sázení matematických symbolů a výrazů v~plynulém textu včetně sazby definic a vět s~využitím balíku \verb|amsthm|. Rovněž použijeme poznámku pod čarou s~použitím příkazu \verb|\footnote|. Někdy je vhodné použít konstrukci \verb|\mbox{}|, která říká, že text nemá být zalomen.
+
+\begin{definice}
+\label{d1} Zásobníkový automat (ZA) \emph{je definován jako
+sedmice tvaru $A = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)$, kde:}
+\end{definice}
+
+\begin{itemize}
+\item$Q$ \emph{je konečná}
+\item$\Sigma$ \emph{je konečná množina} vnitřních (řídicích) stavů,
+\item$\Gamma$ \emph{je konečná} vstupní abeceda,
+\item$\delta$ \emph{je konečná} zásobníková abeceda,
+\item$q_0$ \emph{je} přechodová funkce $Q \times (\Sigma) \cup \{\epsilon\} \times \Gamma \to 2^{Q \times {\Gamma}^{*}}$,
+\item$q_0 \in Q$ \emph{je} počáteční stav, $Z_0 \in \Gamma$ \emph{je} startovací symbol zásobníku a $F \subseteq Q$ \emph{je množina} koncových stavů.
+\end{itemize}
+
+Nechť $P = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)$ je zásobníkový automat. \emph{Konfigurací} nazveme trojici $(q, \omega, \alpha) \in Q \times \Sigma^* \times  \Gamma^*$, kde $q$ je aktuální stav vnitřního řízení, $\omega$ je dosud nezpracovaná část vstupního řetězce a $\alpha = Z_{i_1} Z_{i_2} \ldots Z_{i_k}$ je obsah zásobníku \footnote{$Z_{i_1}$ je vrchol zásobníku}.
+
+\subsection{Podsekce obsahující větu a odkaz}
+\begin{definice}
+\label{d2} Řetězec $\omega$ nad abecedou $\Sigma$ je přijat ZA $A$ \emph{jestliže $(q_0, \omega, Z_0) \sststile{A}{*} (q_F, \epsilon, \delta)$ pro nějaké $\gamma \in \Gamma^* \text{ a } {q_F \in F}$}. \emph{Množinu $L(A) = \{ \omega | \omega$ je přijat ZA $A \} \subseteq \Sigma^* $ nazýváme} jazyk přijímaný TS $M$.
+\end{definice}
+
+Nyní si vyzkoušíme sazbu vět a důkazů opět s~použitím
+balíku \verb|amsthm|.
+
+\begin{veta}
+Třída jazyků, které jsou přijímány ZA, odpovídá
+bezkontextovým jazykům.
+\end{veta}
+
+\begin{dukaz}
+V~důkaze vyjdeme z~Definice \ref{d1} a \ref{d2}. \qed 
+\end{dukaz}
+
+\section{Rovnice a odkazy}
+Složitější matematické formulace sázíme mimo plynulý text. Lze umístit několik výrazů na jeden řádek, ale pak je třeba tyto vhodně oddělit, například příkazem \verb|\quad|.
+
+$$\sqrt[i]{{x^3}_i} \quad \text{ kde } x_i \text{ je } i \text{-té sudé číslo splňující } \quad {x_i}^{2-{x_i}^{i^2}} \leq {x_i}^{{y_i}^3}$$
+
+V~rovnici (\ref{r1}) jsou využity tři typy závorek s~různou explicitně definovanou velikostí.
+
+\begin{eqnarray}
+x & =  & { \bigg[ \Big\{ \big[ a+b \big] *c\Big\}^d \oplus 1 \bigg] }^{1/2} \label{r1}\\ 
+y & = & \lim \limits_{x \to \infty} \frac{ \frac{1}{\log_{10} x} }{\sin^2\,{x} + \cos^2\,{x}}\nonumber
+\end{eqnarray}
+
+V~této větě vidíme, jak vypadá implicitní vysázení li\-mity $\lim_{n \to \infty}{f(n)}$ v~normálním odstavci textu. Podobně je to i s~dalšími symboly jako $\prod_{i=1}^{n} 2^i$ či $\bigcap_{A \in \mathcal{B}}A$. V~pří\-padě vzorců $\lim\limits_{n \to \infty} f(n)$ a $\prod\limits^n_{i=1}$ jsme si vynutili méně úspornou sazbu příkazem \verb|\limits|.
+
+\begin{eqnarray}
+\int_b^a g(x)\,\mathrm{d}x & = & -\int\limits_a^b f(x)\, \mathrm{d}x\\
+\overline{\overline{A \land B}} & \Leftrightarrow & \overline{\overline{A} \vee \overline{B}}
+\end{eqnarray}
+
+\section{Matice}
+Pro sázení matic se velmi často používá prostředí \verb|array| a závorky (\verb|\left|, \verb|\right|).
+
+$$
+\left[
+	\begin{array}{ccc}
+	 	&  \widehat{\beta + \gamma} & \hat{\pi} \\
+		\vec a & \overleftrightarrow{AC}\\
+	\end{array}
+\right]
+ = 1 \Leftrightarrow \mathbb{Q} = \pmb R
+$$
+
+$$
+\pmb A~= 
+\left|
+	\begin{array}{cccc}
+	 	a_{11} & a_{12} & \cdots & a_{1n}\\
+	 	a_{21} & a_{22} & \cdots & a_{2n}\\
+	 	\vdots & \vdots & \ddots & \vdots\\
+	 	a_{m1} & a_{m2} & \cdots & a_{mn}
+	\end{array}
+\right|
+=
+\begin{array}{cc}
+	t & u\\
+	v~& w\\
+\end{array}
+= tw - uw
+$$
+
+Prostředí \verb|array| lze úspěšně využít i jinde.
+
+$$
+\binom{n}{k} =
+\left\{
+	\begin{array}{ll}
+	0 & \text{pro } k~< 0 \text{ nebo } k~> n \\
+	\frac{n!}{k!(n - k)!}  & \text{pro } 0 \leq k~\leq n\\
+\end{array} \right.
+$$
+
+%%%%%%%%%%%%%%%
+% asi times primo pouzit
+% turnstile blbe
+
+%Nepoužívá inputenc! (!) Dokument je těžko přenositelný a na počítači s jinak nastavenou lokalizací bude výsledek chybný.
+%Obvykle je lepší použít \smallskip, \medskip, \bigskip nebo poměrné mezery sázené pomocí \stretch například takto:
+
+%\vspace{\stretch{0.25}} text \vspace{\stretch{0.75}}.
+
+% Není použit \newtheorem. (!!) 
+% Není použito prostředí eqnarray.
+
+
+
+\end{document}

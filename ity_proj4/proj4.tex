@@ -1,0 +1,133 @@
+\documentclass[11pt, a4paper, twocolumn]{article}
+\usepackage[left=1.5cm,text={18cm, 25cm},top={2.5cm}]{geometry}
+
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage{times}
+
+\bibliographystyle{czplain}
+\usepackage{balance}
+
+
+\usepackage{blindtext}
+\usepackage{hyperref}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts, bm}
+\usepackage{mathtools}
+
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%  TITULNI STRANKA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+
+\begin{center}
+	\Huge \textsc{Fakulta informačních technologií \\% mozna Huge, mozna medskip
+	Vysoké učení technické v~Brně}\\
+	\vspace{\stretch{0.382}}
+	\huge Typografie a publikování\,--\,4. projekt\\
+	\huge Bibliografie -- citace
+	\vspace{\stretch{0.618}}
+\end{center}
+
+{\Large 2019 \hfill Kateřina Mušková}
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%  VLASTNI DOKUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Co je to \LaTeX}
+\LaTeX je balík příkazů a maker používaných společně se sázecím programem \TeX s jehož pomocí lze vytvářet dokumenty, vyzitky, články, či celé knihy s~velmi profesionálním vzhledem. \cite{guide}
+
+Velkou výhodou \LaTeX u oproti jiným textovým procesorů je pokrytí vpodstatě většiny funkcionalit potřebných při sázení. A~to bez potřeby zabývat se vnitřní strukturou dokumentu či technickými detaily.\cite{uvod_72} Základní myšlenkou nadstavby \LaTeX u je totiž zpřístupnění složitého jazyka pro sazbu uživatelům, kteří nemají vzdělání v~oblasti typografie. \cite{pysny_bc}
+
+Uživateli opravdu stačí jen několik srozumitelných příkazů na to, aby si vytvořil náročnější struktury typu matematické vzorce, citace, poznámka pod čarou, odkazy, obrázky, či speciální symboly. Pro mnoho funkcí existují navíc rozšíření v~podobě balíčků. \cite{uvod_72}
+
+
+\section{Struktura dokumentu}
+Každý dokument určený ke spracováná má systémem \LaTeX má tuto rámcovou strukturu:
+
+\begin{figure}[h]
+\verb|\documentclass[volby]{styl}|\\
+\quad \quad $\vdots$ \quad \textit{preambule}\\
+\verb|\begin{document}|\\
+\quad \quad $\vdots$ \quad \textit{textová část}\\
+\verb|\end{document}|
+\end{figure}
+
+V~povinném úvodním příkazu \verb|\documentclass| první parametr definuje styl sazby. Kdispozici jsou například předdefinované styly \verb|article|(článek), \verb|report|(zpráva), \verb|book|(kniha), nebo \verb|letter|(dopis) a další. \verb|Volby| pak představují modifikaci původního stylu.
+
+V~\verb|preambuly| se nachází další balíčky a příkazy, jejichž palatnost je globální. Připojování balíčků se provádí příkazem \verb|/usepackage|. \cite{zac_rybicka}
+
+Mezi \verb|\begin{document} a \end{document}| se nachází samotný obsah práce. Cokoliv, co by bylo mimo nebude vytištěno.
+
+\section{Sazba matematiky}
+\LaTeX poskztuje nějaké možnosti k~sazbě matematiky, ale ty zdaleka nejsou dostatačující, proto se používají rozšíření. Asi nejužívanějším balíčkem k~sazbě matematiky je \verb|amsmath|. \cite{muni_dipl}
+
+\subsection{Math}
+Jakákoliv matematika se sází pomocí \verb|$| $\dots$ \ \verb|$| přímo do odstavce:
+\verb|$(a+b)^2$|, což vypadá takto $(a+b)^2$, nebo na samostatný řádek použitím \verb|$$| $\dots$ \ \verb|$$|. 
+$$(a+b)^2$$
+Pravidla pro sazbu zůstávají stejná, liší se jen umístění textu. \cite{pragm_cs}
+
+\subsection{Rovnice}
+Rovnice vysázíme pomocí prostředí \verb|equation|, pro jednoduché rovnice, a \verb|align| pro více rovnic. 
+
+\begin{figure}[h]
+\verb|\begin{equation*}|\\
+\verb|  1 + 2 = 3 |\\
+\verb|\end{equation*}|
+\end{figure}
+%%
+\begin{equation*}
+1 + 2 = 3 
+\end{equation*}
+%%
+\begin{figure}[h]
+	\verb|\begin{align*}|\\
+	\verb| 1 + 2 &= 3\\|\\
+	\verb| 1 &= 3 - 2|\\
+	\verb|\end{align*}|
+	\begin{align*}
+  		1 + 2 &= 3\\
+  		1 &= 3 - 2
+	\end{align*}
+\end{figure}
+
+
+\verb|Align| má tu výhodu, že dokáže zarovnávat pod sebe řádky v~místech, kde se vyskytuje \verb|&|. Jednotlivé řádky musí pak být odděleny \verb|\\|. \cite{tutorial_tex}
+
+Oběd dvě možnost existují ve variantě bez hvězdičky (s~číslováním) a s~hvězdičkou(bez číslování).
+\begin{figure}[h]
+	\verb|\begin{equation}|\\
+	\verb|  1 + 2 = 3 |\\
+	\verb|\end{equation}|
+	\begin{equation}
+		1 + 2 = 3 
+	\end{equation}
+\end{figure}
+
+Obecně je ale více preferované prostředí \verb|equation| kvůli odsazování a podpoře použití například \verb|\qed|, nebo \verb|\qedhere| z~balíčku \verb|theorem|.\cite{guide_pdf}
+
+\newpage
+
+\section{Čeština v~\LaTeX u}
+Aby čeština fungovala správně, je třeba přidat tyto balíčky do breambule.\cite{bud_bc}
+\\
+\\
+\verb|\usepackage[czech]{babel}|\\
+\verb|\usepackage[utf8]{inputenc}|\\
+\verb|\usepackage[IL2]{fontenc}|\\
+
+Balíček \verb|babel| se snaží poskytnout podporu pro sazbu ve všech evropských jazycích (používajících latinku). Umožňuje též sazbu vícejazyčných dokumentů, kde se každá část řídí pravidly daného jazyka (např. sazba manuálů).
+
+Balík \verb|inputenc| říká překladači, v~jakém kódování byl dokument napsán. \verb|Fontenc| slouží pro výběr kódování fontů použitých v~cílovém dokumentu. Pro českou sazbu jsou obvyklé parametry T1 pro unicode fonty a IL2 pro fonty v~kódování ISO8859-2.\cite{babel}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%  REFERENCES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\begin{center}
+\onecolumn
+\renewcommand{\refname}{Použitá literatura}
+\bibliography{cit}
+\end{center}
+\end{document}
